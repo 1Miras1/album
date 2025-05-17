@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Problems and My Thoughts</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #00ffff;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #00ffff;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #ccc;
+    }
+
+    .album-cover {
+      width: 80%;
+      max-width: 500px;
+      height: auto;
+      margin: 30px auto;
+      border: 3px solid #00ffff;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #00ffff55;
+    }
+
+    .timer {
+      font-size: 24px;
+      color: #00ff88;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>My Problems and My Thoughts</h1>
+  <p>Nový album — odpočítávání do vydání</p>
+
+  <!-- Obraz alba -->
+  <img class="album-cover" src="forever outsider.jpeg" alt="Obal alba">
+
+  <!-- Časovač -->
+  <div class="timer" id="countdown">Načítání...</div>
+
+  <script>
+    const endDate = new Date();
+    endDate.setDate(endDate.getDate() + 30);
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = endDate - now;
+
+      if (distance < 0) {
+        document.getElementById("countdown").innerHTML = "🎉 Album je hotové!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML =
+        `Do vydání zbývá: ${days} dnů ${hours} h ${minutes} m ${seconds} s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+
+
+<img class="album-cover" src="forever outsider.jpeg" alt="Obal alba">
+
+</body>
+</html>
